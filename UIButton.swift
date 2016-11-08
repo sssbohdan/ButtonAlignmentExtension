@@ -49,7 +49,7 @@ extension UIButton {
             imageEdgeInsets = UIEdgeInsetsMake(0, CGFloat(unwrappedImageOffset.horizontalOffset), 0, 0)
         case .Right:
             let imageViewXOrigin = buttonWidth - imageViewFrame.width
-            imageEdgeInsets = UIEdgeInsetsMake(0, imageViewXOrigin - CGFloat(unwrappedImageOffset.horizontalOffset), 0, 0)
+            imageEdgeInsets = UIEdgeInsetsMake(0, imageViewXOrigin - CGFloat(unwrappedImageOffset.horizontalOffset), 0, -(imageViewXOrigin - CGFloat(unwrappedImageOffset.horizontalOffset)))
         case .Center:
             let imageViewXOrigin = (buttonWidth - imageViewFrame.width) / 2.0
             imageEdgeInsets = UIEdgeInsetsMake(0, imageViewXOrigin, 0, 0)
