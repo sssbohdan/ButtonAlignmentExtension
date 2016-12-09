@@ -13,15 +13,15 @@ typealias twoDimensionalPosition = (horizontalPostion: HorizontalPosition, veric
 typealias twoDimensionalOffset = (horizontalOffset: Double, veticalOffset: Double)
 
 enum HorizontalPosition {
-    case Left,
-    Right,
-    Center
+    case left,
+    right,
+    center
 }
 
 enum VerticalPosition {
-    case Top,
-    Bottom,
-    Center
+    case top,
+    bottom,
+    center
 }
 
 extension UIButton {
@@ -29,62 +29,62 @@ extension UIButton {
                                          imageOffset: twoDimensionalOffset?,
                                          textPosition: twoDimensionalPosition?,
                                          textOffset: twoDimensionalOffset?) {
-        guard let imageViewFrame = imageView?.frame, labelFrame = titleLabel?.frame else {
+        guard let imageViewFrame = imageView?.frame, let labelFrame = titleLabel?.frame else {
                 return
         }
         
-        let unwrappedImagePosition = imagePosition ?? (.Center, .Center)
+        let unwrappedImagePosition = imagePosition ?? (.center, .center)
         let unwrappedImageOffset = imageOffset ?? (0, 0)
-        let unwrappedTextPosition = textPosition ?? (.Center, .Center)
+        let unwrappedTextPosition = textPosition ?? (.center, .center)
         let unwrappedTextOffset = textOffset ?? (0, 0)
         
-        contentHorizontalAlignment = .Left
-        contentVerticalAlignment = .Top
+        contentHorizontalAlignment = .left
+        contentVerticalAlignment = .top
 
         let buttonWidth = bounds.width
         let buttonHeight = bounds.height
         
         switch unwrappedImagePosition.horizontalPostion {
-        case .Left:
+        case .left:
             imageEdgeInsets = UIEdgeInsetsMake(0, CGFloat(unwrappedImageOffset.horizontalOffset), 0, 0)
-        case .Right:
+        case .right:
             let imageViewXOrigin = buttonWidth - imageViewFrame.width
             imageEdgeInsets = UIEdgeInsetsMake(0, imageViewXOrigin - CGFloat(unwrappedImageOffset.horizontalOffset), 0, 0)
-        case .Center:
+        case .center:
             let imageViewXOrigin = (buttonWidth - imageViewFrame.width) / 2.0
             imageEdgeInsets = UIEdgeInsetsMake(0, imageViewXOrigin, 0, 0)
         }
         
         switch unwrappedImagePosition.vericalPostion {
-        case .Top:
+        case .top:
             imageEdgeInsets = UIEdgeInsetsMake(CGFloat(unwrappedImageOffset.veticalOffset),imageEdgeInsets.left, 0, imageEdgeInsets.right)
-        case .Bottom:
+        case .bottom:
             let imageViewYOrigin = buttonHeight - imageViewFrame.height
             imageEdgeInsets = UIEdgeInsetsMake(imageViewYOrigin - CGFloat(unwrappedImageOffset.veticalOffset), imageEdgeInsets.left, 0, imageEdgeInsets.right)
-        case .Center:
+        case .center:
             let imageViewYOrigin = (buttonHeight - imageViewFrame.height) / 2.0
             imageEdgeInsets = UIEdgeInsetsMake(imageViewYOrigin, imageEdgeInsets.left, 0, imageEdgeInsets.right)
         }
         
         switch unwrappedTextPosition.horizontalPostion {
-        case .Left:
+        case .left:
             let textXOrigin = -imageViewFrame.width + CGFloat(unwrappedTextOffset.horizontalOffset)
             titleEdgeInsets = UIEdgeInsetsMake(0, textXOrigin, 0, 0)
-        case .Center:
+        case .center:
             let textXOrigin = ((buttonWidth - labelFrame.width) / 2.0) - imageViewFrame.width
             titleEdgeInsets = UIEdgeInsetsMake(0, textXOrigin, 0, 0)
-        case .Right:
+        case .right:
             let textXOrigin = (buttonWidth - labelFrame.width - CGFloat(unwrappedTextOffset.horizontalOffset) - imageViewFrame.width)
             titleEdgeInsets = UIEdgeInsetsMake(0, textXOrigin, 0, 0)
         }
         
         switch unwrappedTextPosition.vericalPostion {
-        case .Top:
+        case .top:
             titleEdgeInsets = UIEdgeInsetsMake(CGFloat(unwrappedTextOffset.veticalOffset), titleEdgeInsets.left, 0, titleEdgeInsets.right)
-        case .Center:
+        case .center:
             let textYOrigin = (buttonHeight - labelFrame.height) / 2.0
             titleEdgeInsets = UIEdgeInsetsMake(textYOrigin, titleEdgeInsets.left, 0, titleEdgeInsets.right)
-        case .Bottom:
+        case .bottom:
             let textYOrigin = buttonHeight - labelFrame.height - CGFloat(unwrappedTextOffset.veticalOffset)
             titleEdgeInsets = UIEdgeInsetsMake(textYOrigin, titleEdgeInsets.left, 0, titleEdgeInsets.right)
         }
