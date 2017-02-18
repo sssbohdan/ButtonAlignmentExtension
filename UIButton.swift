@@ -25,10 +25,10 @@ enum VerticalPosition {
 }
 
 extension UIButton {
-    func setupImageInButton(withPosition imagePosition: twoDimensionalPosition?,
-                                         imageOffset: twoDimensionalOffset?,
-                                         textPosition: twoDimensionalPosition?,
-                                         textOffset: twoDimensionalOffset?) {
+    func setupImageInButton(withPosition imagePosition: twoDimensionalPosition? = nil,
+                                         imageOffset: twoDimensionalOffset? = nil,
+                                         textPosition: twoDimensionalPosition? = nil,
+                                         textOffset: twoDimensionalOffset? = nil) {
         guard let imageViewFrame = imageView?.frame, let labelFrame = titleLabel?.frame else {
                 return
         }
@@ -88,15 +88,5 @@ extension UIButton {
             let textYOrigin = buttonHeight - labelFrame.height - CGFloat(unwrappedTextOffset.veticalOffset)
             titleEdgeInsets = UIEdgeInsetsMake(textYOrigin, titleEdgeInsets.left, 0, titleEdgeInsets.right)
         }
-    }
-    
-    func setupImageInButton(withPosition imagePosition: twoDimensionalPosition?,
-                                         imageOffset: twoDimensionalOffset?) {
-        setupImageInButton(withPosition: imagePosition, imageOffset: imageOffset, textPosition: nil, textOffset: nil)
-    }
-    
-    func setupTextInButton(withPosition textPosition: twoDimensionalPosition?,
-                                        textOffset: twoDimensionalOffset?) {
-        setupImageInButton(withPosition: nil, imageOffset: nil, textPosition: textPosition, textOffset: textOffset)
     }
 }
