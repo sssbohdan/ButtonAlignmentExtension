@@ -6,7 +6,6 @@
 //  Copyright © 2016 BBB. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 typealias ContentPosition = (horizontal: HorizontalPosition, vertical: VerticalPosition)
